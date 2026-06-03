@@ -1,0 +1,14 @@
+services:
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./water_app.db
+      - ENVIRONMENT=development
+      - SECRET_KEY=your-super-secret-key-change-this
+    volumes:
+      - ./app:/app/app
+      - ./water_app.db:/app/water_app.db
+      - ./uploads:/app/uploads
+    restart: unless-stopped

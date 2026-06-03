@@ -1,0 +1,7 @@
+{
+  "none_algorithm": {"alg": "none", "typ": "JWT"},
+  "empty_secret": {"secret": ""},
+  "weak_secrets": ["secret", "password", "123456", "key", "jwt", "admin"],
+  "expired_payload": {"exp": 0},
+  "modified_payload": {"sub": "2", "role": "admin"}
+}

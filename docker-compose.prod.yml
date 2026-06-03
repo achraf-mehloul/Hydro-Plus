@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  backend:
+    image: waterapp-backend:latest
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=postgresql://wateruser:${DB_PASSWORD}@db:5432/waterdb
+      - ENVIRONMENT=production
+      - SECRET_KEY=${SECRET_KEY}
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+      - REFRESH_TOKEN_EXPIRE_DAYS=7
+    depends_on:
+      - db
+      - redis
+    restart: always
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=wateruser
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=waterdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./backend/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./backend/nginx/modsecurity.conf:/etc/nginx/modsecurity.conf:ro
+      - ./backend/nginx/crs:/etc/nginx/crs:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - backend
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    restart: always
+
+  admin-dashboard:
+    build:
+      context: ./admin-dashboard
+      dockerfile: Dockerfile
+    ports:
+      - "3001:80"
+    restart: always
+
+volumes:
+  postgres_data:

