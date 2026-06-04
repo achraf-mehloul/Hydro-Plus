@@ -2,7 +2,7 @@
 
 > **شبكة وطنية حية لرصد المياه، توقع الأزمات، وإدارة الطوارئ — مبنية بقوة المجتمع والذكاء الاصطناعي.**
 
-[![PWA](https://img.shields.io/badge/PWA-Ready-3b82f6)]() [![React](https://img.shields.io/badge/React-18-61dafb)]() [![Supabase](https://img.shields.io/badge/Supabase-Cloud-3ecf8e)]() [![Realtime](https://img.shields.io/badge/Realtime-Live-22d3ee)]() [![i18n](https://img.shields.io/badge/i18n-AR%20%C2%B7%20FR%20%C2%B7%20EN-f59e0b)]()
+[![PWA](https://img.shields.io/badge/PWA-Ready-3b82f6)]() [![React](https://img.shields.io/badge/React-18-61dafb)]()  [![Realtime](https://img.shields.io/badge/Realtime-Live-22d3ee)]() [![i18n](https://img.shields.io/badge/i18n-AR%20%C2%B7%20FR%20%C2%B7%20EN-f59e0b)]()
 
 ---
 
